@@ -14,13 +14,13 @@
                 style.innerHTML = modified;
         });
 
-        for (var selector of ["iframe", "object"]) {
+        forEach(["iframe", "object"], function (selector) {
             forEach(doc.querySelectorAll(selector), function (element) {
                 var doc = element.contentDocument;
                 if (doc)
                     modifyStyles(doc);
             });
-        }
+        });
     }
 
     function modifyCssText(text) {
