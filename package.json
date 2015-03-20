@@ -1,25 +1,25 @@
 {
-  "name": "webkit-prefixer",
+  "name": "tweak-css-tests",
   "version": "1.0.0",
-  "description": "",
-  "main": "webkit-prefixer.js",
-  "dependencies": {},
-  "devDependencies": {
+  "main": "tweak-css-tests.js",
+  "dependencies": {
     "gulp": "^3.8.11",
     "gulp-artoo": "^0.1.0",
     "gulp-rename": "^1.2.0"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kojiishi/webkit-prefixer.git"
+    "url": "https://github.com/kojiishi/tweak-css-tests.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kojiishi/webkit-prefixer/issues"
+    "url": "https://github.com/kojiishi/tweak-css-tests/issues"
   },
-  "homepage": "https://github.com/kojiishi/webkit-prefixer"
+  "homepage": "https://github.com/kojiishi/tweak-css-tests",
+  "keywords": []
 }
