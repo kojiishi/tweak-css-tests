@@ -1,16 +1,16 @@
 Tweak CSS Tests
 ===============
 
-A bookmarklet that helps you running [CSS Test Suites]
+A bookmarklet that helps you running the [CSS Test Suites]
 on your browser.
 
 ## Overview
 
-As CSS syntax could change during the development,
-CSS Test Suites uses the most recent syntax,
-while the browser you want to test may support old syntaxes.
+CSS syntax may change during the development of the specification.
+The [CSS Test Suites] uses the most recent syntax,
+but the browser you want to test on may support only old syntaxes.
 
-This is a bookmarklet that dynamically adopt test files
+This bookmarklet dynamically adopts test files
 to old syntax on your browser.
 
 ## Install
