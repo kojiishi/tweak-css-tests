@@ -10,8 +10,7 @@ CSS syntax may change during the development of the specification.
 The [CSS Test Suites] uses the most recent syntax,
 but the browser you want to test on may support only old syntaxes.
 
-This bookmarklet dynamically adopts test files
-to old syntax on your browser.
+This bookmarklet dynamically adopts test files for your browser.
 
 ## Install
 
@@ -22,7 +21,7 @@ to old syntax on your browser.
 ## How to use
 
 1. Navigate to the test page in the [CSS Test Suites].
-2. Click the bookmarklet.
+2. Click the bookmarklet on your bookmarks bar.
 
 ## Use as a script
 
