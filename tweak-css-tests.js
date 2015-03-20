@@ -1,8 +1,5 @@
 (function () {
-    function forEach(list, func) {
-        for (var i = 0; i < list.length; i++)
-            func(list[i]);
-    }
+    modifyStyles(document);
 
     function modifyStyles(doc) {
         if (doc.readyState != "complete") {
@@ -12,11 +9,9 @@
 
         forEach(doc.querySelectorAll("style"), function (style) {
             var original = style.innerText;
-            var modified = original
-                .replace(/writing-mode/g, "-webkit-writing-mode")
-                .replace(/-webkit-webkit-writing-mode/g, "-webkit-writing-mode");
+            var modified = modifyCssText(original);
             if (modified != original)
-                style.innerText = modified;
+                style.innerHTML = modified;
         });
 
         for (var selector of ["iframe", "object"]) {
@@ -28,5 +23,18 @@
         }
     }
 
-    modifyStyles(document);
+    function modifyCssText(text) {
+        text = modifyPrefix(text, "writing-mode");
+        text = text.replace(/(-webkit-){2,}/g, "-webkit-");
+        return text;
+    }
+
+    function modifyPrefix(text, name) {
+        return text.replace(new RegExp(name, "g"), "-webkit-" + name);
+    }
+
+    function forEach(list, func) {
+        for (var i = 0; i < list.length; i++)
+            func(list[i]);
+    }
 })();
