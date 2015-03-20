@@ -24,6 +24,7 @@
     }
 
     function modifyCssText(text) {
+        text = modifyPrefix(text, "text-orientation");
         text = modifyPrefix(text, "writing-mode");
         text = text.replace(/(-webkit-){2,}/g, "-webkit-");
         return text;
