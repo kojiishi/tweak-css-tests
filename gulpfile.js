@@ -9,5 +9,8 @@ gulp.task('bookmarklet', function () {
         .pipe(gulp.dest('./build'));
 });
 
-gulp.task('default', ['bookmarklet'], function () {
+gulp.task('watch', function () {
+    gulp.watch('webkit-prefixer.js', ['bookmarklet']);
 });
+
+gulp.task('default', ['bookmarklet']);
