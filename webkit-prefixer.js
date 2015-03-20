@@ -4,8 +4,13 @@
             func(list[i]);
     }
 
-    function modifyStyles() {
-        forEach(document.querySelectorAll("style"), function (style) {
+    function modifyStyles(doc) {
+        if (doc.readyState != "complete") {
+            window.addEventListener("load", function () { modifyStyles(doc); });
+            return;
+        }
+
+        forEach(doc.querySelectorAll("style"), function (style) {
             var original = style.innerText;
             var modified = original
                 .replace(/writing-mode/g, "-webkit-writing-mode")
@@ -13,10 +18,15 @@
             if (modified != original)
                 style.innerText = modified;
         });
+
+        for (var selector of ["iframe", "object"]) {
+            forEach(doc.querySelectorAll(selector), function (element) {
+                var doc = element.contentDocument;
+                if (doc)
+                    modifyStyles(doc);
+            });
+        }
     }
 
-    if (document.readyState != "complete")
-        window.addEventListener("load", modifyStyles);
-    else
-        modifyStyles();
+    modifyStyles(document);
 })();
