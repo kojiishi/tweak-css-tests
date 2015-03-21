@@ -26,7 +26,8 @@ This bookmarklet dynamically adopts test files for your browser.
 ## Use the script directly
 
 If you have the test files on your local hard drive,
-you can load the script into the test page.
+you can load the script into the test page
+by adding a script tag to the test page.
 ```html
 <script src="tweak-css-tests.js"></script>
 ```
