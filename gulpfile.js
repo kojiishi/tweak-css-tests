@@ -18,7 +18,7 @@ gulp.task('bookmarklet', function () {
 
 gulp.task('README', ['bookmarklet'], function () {
     return gulp.src('README.md')
-        .pipe(replace(/(<a id="bookmarklet" href=")[^"]*/, '$1' + fs.readFileSync(bookmarklet)))
+        .pipe(replace(/(<a id="bookmarklet" href=")[^"]*/, '$1' + escape(fs.readFileSync(bookmarklet))))
         .pipe(gulp.dest('.'));
 });
 
