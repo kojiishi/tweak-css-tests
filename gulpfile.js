@@ -16,14 +16,14 @@ gulp.task('bookmarklet', function () {
         .pipe(gulp.dest('.'));
 });
 
-gulp.task('README', ['bookmarklet'], function () {
-    return gulp.src('README.md')
-        .pipe(replace(/(<a id="bookmarklet" href=")[^"]*/, '$1' + escape(fs.readFileSync(bookmarklet))))
+gulp.task('bookmarklet-html', ['bookmarklet'], function () {
+    return gulp.src('bookmarklet.html')
+        .pipe(replace(/(<a href=")[^"]*/, '$1' + escape(fs.readFileSync(bookmarklet))))
         .pipe(gulp.dest('.'));
 });
 
 gulp.task('watch', function () {
-    gulp.watch(source, ['bookmarklet', 'README']);
+    gulp.watch(source, ['bookmarklet', 'bookmarklet-html']);
 });
 
-gulp.task('default', ['bookmarklet', 'README']);
+gulp.task('default', ['bookmarklet', 'bookmarklet-html']);
