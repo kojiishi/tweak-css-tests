@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
     artoo = require('gulp-artoo'),
+    fs = require('fs'),
     rename = require('gulp-rename'),
+    replace = require('gulp-replace'),
     uglify = require('gulp-uglify');
 
 var source = 'tweak-css-tests.js';
@@ -14,8 +16,14 @@ gulp.task('bookmarklet', function () {
         .pipe(gulp.dest('.'));
 });
 
-gulp.task('watch', function () {
-    gulp.watch(source, ['bookmarklet']);
+gulp.task('README', ['bookmarklet'], function () {
+    return gulp.src('README.md')
+        .pipe(replace(/^\[bookmarklet]: .*$/m, '[bookmarklet]: ' + fs.readFileSync(bookmarklet)))
+        .pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['bookmarklet']);
+gulp.task('watch', function () {
+    gulp.watch(source, ['bookmarklet', 'README']);
+});
+
+gulp.task('default', ['bookmarklet', 'README']);
