@@ -14,10 +14,9 @@ This bookmarklet dynamically adopts test files for your browser.
 
 ## Install
 
-1. Press the mouse button on the link below.
-2. Drag to your bookmarks bar and release the mouse button.
-
-<iframe src="https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/bookmarklet.html"></iframe>
+1. Navigate to [bookmarklet].
+2. Select all text in the page.
+3. Drag the selected text to your bookmarks bar.
 
 ## How to use the bookmarklet
 
@@ -39,3 +38,4 @@ as in the example below.
 ```
 
 [CSS Test Suites]: http://test.csswg.org/shepherd/
+[bookmarklet]: https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/bookmarklet.js
