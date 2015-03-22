@@ -3,7 +3,7 @@
 
     function modifyStyles(doc) {
         if (doc.readyState != "complete") {
-            window.addEventListener("load", function () { modifyStyles(doc); });
+            doc.addEventListener("load", function () { modifyStyles(doc); });
             return;
         }
 
