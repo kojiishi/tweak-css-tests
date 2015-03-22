@@ -18,6 +18,8 @@ This bookmarklet dynamically adopts test files for your browser.
 2. Select all text in the page.
 3. Drag the selected text to your bookmarks bar.
 
+If that fails, please refer to [how to install bookmarklet in chrome].
+
 ## How to use the bookmarklet
 
 1. Navigate to the test page in the [CSS Test Suites].
@@ -39,4 +41,5 @@ as in the example below.
 ```
 
 [CSS Test Suites]: http://test.csswg.org/shepherd/
+[how to install bookmarklet in chrome]: https://crossbrowsertesting.com/faq/how-do-i-install-bookmarklet-google-chrome-mac-os
 [bookmarklet]: https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/bookmarklet.js
