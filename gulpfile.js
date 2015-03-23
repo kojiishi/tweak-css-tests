@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-    artoo = require('gulp-artoo'),
+    insert = require('gulp-insert'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify');
 
@@ -9,7 +9,7 @@ var bookmarklet = 'bookmarklet.js';
 gulp.task('bookmarklet', function () {
     return gulp.src(source)
         .pipe(uglify())
-        .pipe(artoo())
+        .pipe(insert.prepend('javascript:'))
         .pipe(rename(bookmarklet))
         .pipe(gulp.dest('.'));
 });
