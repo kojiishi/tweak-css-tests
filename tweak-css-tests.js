@@ -24,6 +24,7 @@
     }
 
     function modifyCssText(text) {
+        text = modifyValueRename(text, "text-orientation", "mixed", "vertical-right");
         text = modifyPrefix(text, "text-orientation");
         text = modifyPrefix(text, "writing-mode");
         text = modifyValueRename(text, "text-combine-upright", "all", "horizontal");
