@@ -26,8 +26,18 @@
     function modifyCssText(text) {
         text = modifyPrefix(text, "text-orientation");
         text = modifyPrefix(text, "writing-mode");
+        text = modifyValueRename(text, "text-combine-upright", "all", "horizontal");
+        text = modifyPropertyRename(text, "text-combine-upright", "-webkit-text-combine");
         text = text.replace(/(-webkit-){2,}/g, "-webkit-");
         return text;
+    }
+
+    function modifyPropertyRename(text, from, to) {
+        return text.replace(new RegExp(from, "g"), to);
+    }
+
+    function modifyValueRename(text, property, from, to) {
+        return text.replace(new RegExp(property + "\\s*:\\s*" + from, "g"), property + ": " + to);
     }
 
     function modifyPrefix(text, name) {
