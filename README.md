@@ -10,7 +10,7 @@ CSS syntax may change during the development of the specification.
 The [CSS Test Suites] uses the most recent syntax,
 but the browser you want to test on may support only old syntaxes.
 
-This bookmarklet dynamically adopts test files for your browser.
+This bookmarklet dynamically modifies the DOM to run the test files for your browser.
 
 ## Install
 
