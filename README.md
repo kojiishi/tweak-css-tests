@@ -42,4 +42,4 @@ as in the example below.
 
 [CSS Test Suites]: http://test.csswg.org/shepherd/
 [how to install bookmarklet in chrome]: https://crossbrowsertesting.com/faq/how-do-i-install-bookmarklet-google-chrome-mac-os
-[bookmarklet]: https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/bookmarklet.js
+[bookmarklet]: https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/bookmarklets/tweak-css-tests.js

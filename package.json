@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "main": "tweak-css-tests.js",
   "dependencies": {
-    "gulp": "^3.8.11",
-    "gulp-rename": "^1.2.0"
   },
   "devDependencies": {
+    "gulp": "^3.8.11"
     "gulp-insert": "^0.4.0",
     "gulp-uglify": "^1.1.0"
   },

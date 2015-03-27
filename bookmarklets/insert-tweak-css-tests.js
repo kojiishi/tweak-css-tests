@@ -1,0 +1,1 @@
+javascript:!function(){var t=document.createElement("script");t.src="https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/tweak-css-tests.js",document.body.appendChild(t)}();
