@@ -6,11 +6,15 @@ on your browser.
 
 ## Overview
 
-CSS syntax may change during the development of the specification.
+CSS syntax may change during the development of the specifications.
 The [CSS Test Suites] uses the most recent syntax,
-but the browser you want to test on may support only old syntaxes.
+but the browser you want to test may support only old syntaxes.
 
-This bookmarklet dynamically modifies the DOM to run the test files for your browser.
+This bookmarklet dynamically modifies the DOM for your browser,
+so that you can test layout and/or behavior
+before the browser adopts to the new syntax.
+
+Supports [CSS Writing Modes Level 3] for Chrome/Safari.
 
 ## Install
 
@@ -18,7 +22,7 @@ This bookmarklet dynamically modifies the DOM to run the test files for your bro
 2. Select all text in the page.
 3. Drag the selected text to your bookmarks bar.
 
-If that fails, please refer to [how to install bookmarklet in chrome].
+If that fails, please refer to [how to install bookmarklet in Chrome].
 
 ## How to use the bookmarklet
 
@@ -33,13 +37,8 @@ by adding a script tag to the test page.
 ```html
 <script src="tweak-css-tests.js"></script>
 ```
-You can also load the script
-directly from github
-as in the example below.
-```html
-<script src="https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/tweak-css-tests.js"></script>
-```
 
 [CSS Test Suites]: http://test.csswg.org/shepherd/
-[how to install bookmarklet in chrome]: https://crossbrowsertesting.com/faq/how-do-i-install-bookmarklet-google-chrome-mac-os
+[CSS Writing Modes Level 3]: http://dev.w3.org/csswg/css-writing-modes-3/
+[how to install bookmarklet in Chrome]: https://crossbrowsertesting.com/faq/how-do-i-install-bookmarklet-google-chrome-mac-os
 [bookmarklet]: https://raw.githubusercontent.com/kojiishi/tweak-css-tests/master/bookmarklets/tweak-css-tests.js
