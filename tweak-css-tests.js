@@ -27,22 +27,30 @@
         text = modifyValueRename(text, "text-combine-upright", "all", "horizontal");
         text = modifyPropertyRename(text, "text-combine-upright", "-webkit-text-combine");
         text = modifyValueRename(text, "text-orientation", "mixed", "vertical-right");
-        text = modifyPrefix(text, "text-orientation");
-        text = modifyPrefix(text, "writing-mode");
+        text = modifyPropertyPrefix(text, "text-orientation");
+        text = modifyValuePrefix(text, "unicode-bidi", "isolate");
+        text = modifyValuePrefix(text, "unicode-bidi", "isolate-override");
+        text = modifyValuePrefix(text, "unicode-bidi", "plaintext");
+        text = modifyPropertyPrefix(text, "writing-mode");
         text = text.replace(/(-webkit-){2,}/g, "-webkit-");
         return text;
     }
 
-    function modifyPropertyRename(text, from, to) {
-        return text.replace(new RegExp(from, "g"), to);
+    function modifyPropertyPrefix(text, property) {
+        return modifyPropertyRename(text, property, "-webkit-" + property);
     }
 
-    function modifyValueRename(text, property, from, to) {
-        return text.replace(new RegExp(property + "\\s*:\\s*" + from, "g"), property + ": " + to);
+    function modifyPropertyRename(text, property, to) {
+        return text.replace(new RegExp(property, "g"), to);
     }
 
-    function modifyPrefix(text, name) {
-        return text.replace(new RegExp(name, "g"), "-webkit-" + name);
+    function modifyValuePrefix(text, property, value) {
+        return modifyValueRename(text, property, value, "-webkit-" + value);
+    }
+
+
+    function modifyValueRename(text, property, value, to) {
+        return text.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), property + ": " + to);
     }
 
     function forEach(list, func) {
