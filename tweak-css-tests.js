@@ -24,11 +24,11 @@
     }
 
     function modifyCssText(text) {
+        text = modifyValueRename(text, "text-combine-upright", "all", "horizontal");
+        text = modifyPropertyRename(text, "text-combine-upright", "-webkit-text-combine");
         text = modifyValueRename(text, "text-orientation", "mixed", "vertical-right");
         text = modifyPrefix(text, "text-orientation");
         text = modifyPrefix(text, "writing-mode");
-        text = modifyValueRename(text, "text-combine-upright", "all", "horizontal");
-        text = modifyPropertyRename(text, "text-combine-upright", "-webkit-text-combine");
         text = text.replace(/(-webkit-){2,}/g, "-webkit-");
         return text;
     }
