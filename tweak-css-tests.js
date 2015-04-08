@@ -7,20 +7,28 @@
             return;
         }
 
+        var isModified = false;
         forEach(doc.querySelectorAll("style"), function (style) {
             var original = style.innerText;
             var modified = modifyCssText(original);
-            if (modified != original)
-                style.innerHTML = modified;
+            if (modified == original)
+                return;
+            style.innerHTML = modified;
+            isModified = true;
         });
 
         forEach(["iframe", "object"], function (selector) {
             forEach(doc.querySelectorAll(selector), function (element) {
-                var doc = element.contentDocument;
-                if (doc)
-                    modifyStyles(doc);
+                var subdoc = element.contentDocument;
+                if (subdoc)
+                    modifyStyles(subdoc);
             });
         });
+
+        // WebKit/Blink has a bug in table layout when writing-mode was changed.
+        // Force a full layout to work around this issue.
+        if (isModified)
+            recalc(doc.body);
     }
 
     function modifyCssText(text) {
@@ -48,6 +56,12 @@
         return modifyValueRename(text, property, value, "-webkit-" + value);
     }
 
+    function recalc(element) {
+        var saved = element.style.display;
+        element.style.display = "none";
+        element.offsetTop;
+        element.style.display = saved;
+    }
 
     function modifyValueRename(text, property, value, to) {
         return text.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), property + ": " + to);
