@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<style>
+html {
+    font: 16pt/1.2 Palatino;
+}
+a.bookmarklet {
+    background:#3498db;
+    border:thick gray solid;
+    border-radius:12px;
+    color:white;
+    font-family:Arial;
+    padding:5px 10px;
+    text-decoration:none;
+}
+</style>
+<h1>Tweak CSS Tests</h1>
+<p>
+A bookmarklet that helps you running the
+<a href="http://test.csswg.org/shepherd/">CSS Test Suites</a>
+on your browser.
+
+<h2>Overview</h2>
+<p>
+CSS syntax may change during the development of the specifications.
+The <a href="http://test.csswg.org/shepherd/">CSS Test Suites</a>
+uses the most recent syntax,
+but the browser you want to test may support only old syntaxes.
+<p>
+This bookmarklet dynamically modifies the DOM for your browser,
+so that you can test layout and/or behavior
+before the browser adopts to the new syntax.
+<p>
+Supports <a href="http://dev.w3.org/csswg/css-writing-modes-3/">CSS Writing Modes Level 3</a> for Chrome/Safari.
+
+<h2>Install</h2>
+<ol>
+    <li>Drag <a class=bookmarklet href="bookmarklets/tweak-css-tests.js">tweak-css-tests bookmarklet</a> to your bookmarks bar.
+</ol>
+
+<p>
+If that fails, please refer to
+<a href="https://crossbrowsertesting.com/faq/how-do-i-install-bookmarklet-google-chrome-mac-os">how to install bookmarklet in Chrome</a>.
+
+<h2>How to use the bookmarklet</h2>
+<ol>
+    <li>Navigate to the test page in the <a href="http://test.csswg.org/shepherd/">CSS Test Suites</a>.
+    <li>Click the bookmarklet on your bookmarks bar.
+</ol>
+
+<h2>Use the script directly</h2>
+<p>
+If you have the test files on your local hard drive,
+you can load the script into the test page
+by adding a script tag to the test page.
+
+<pre>
+&lt;script src="tweak-css-tests.js">&lt;/script>
+</pre>
