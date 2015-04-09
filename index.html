@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <style>
 html {
@@ -11,6 +13,7 @@ a.bookmarklet {
   font-family:Arial;
   padding:2px 6px;
   text-decoration:none;
+  white-space:nowrap;
 }
 </style>
 <h1>Tweak CSS Tests</h1>
@@ -35,7 +38,7 @@ Supports <a href="http://dev.w3.org/csswg/css-writing-modes-3/">CSS Writing Mode
 <h2>Install</h2>
 <ol>
   <li>Drag this bookmarklet to your bookmarks bar:
-    <a class=bookmarklet href="{% include bookmarklets/tweak-css-tests.js %}">tweak-css-tests bookmarklet</a>
+    <a class=bookmarklet href='{% include_relative bookmarklets/tweak-css-tests.js %}'>tweak-css-tests</a>
 </ol>
 
 <p>
@@ -54,6 +57,6 @@ If you have the test files on your local hard drive,
 you can load the script into the test page
 by adding a script tag to the test page.
 
-<pre>
-&lt;script src="tweak-css-tests.js">&lt;/script>
-</pre>
+{% highlight html %}
+<script src="tweak-css-tests.js"></script>
+{% endhighlight %}
