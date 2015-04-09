@@ -32,28 +32,32 @@
     }
 
     function modifyCssText(text) {
-        text = modifyValueRename(text, "text-combine-upright", "all", "horizontal");
-        text = modifyPropertyRename(text, "text-combine-upright", "-webkit-text-combine");
-        text = modifyValueRename(text, "text-orientation", "mixed", "vertical-right");
-        text = modifyPropertyPrefix(text, "text-orientation");
-        text = modifyValuePrefix(text, "unicode-bidi", "isolate");
-        text = modifyValuePrefix(text, "unicode-bidi", "isolate-override");
-        text = modifyValuePrefix(text, "unicode-bidi", "plaintext");
-        text = modifyPropertyPrefix(text, "writing-mode");
+        text = renameValue(text, "text-combine-upright", "all", "horizontal");
+        text = renameProperty(text, "text-combine-upright", "-webkit-text-combine");
+        text = renameValue(text, "text-orientation", "mixed", "vertical-right");
+        text = prefixProperty(text, "text-orientation");
+        text = prefixValue(text, "unicode-bidi", "isolate");
+        text = prefixValue(text, "unicode-bidi", "isolate-override");
+        text = prefixValue(text, "unicode-bidi", "plaintext");
+        text = prefixProperty(text, "writing-mode");
         text = text.replace(/(-webkit-){2,}/g, "-webkit-");
         return text;
     }
 
-    function modifyPropertyPrefix(text, property) {
-        return modifyPropertyRename(text, property, "-webkit-" + property);
+    function prefixProperty(text, property) {
+        return renameProperty(text, property, "-webkit-" + property);
     }
 
-    function modifyPropertyRename(text, property, to) {
+    function renameProperty(text, property, to) {
         return text.replace(new RegExp(property, "g"), to);
     }
 
-    function modifyValuePrefix(text, property, value) {
-        return modifyValueRename(text, property, value, "-webkit-" + value);
+    function prefixValue(text, property, value) {
+        return renameValue(text, property, value, "-webkit-" + value);
+    }
+
+    function renameValue(text, property, value, to) {
+        return text.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), property + ": " + to);
     }
 
     function recalc(element) {
@@ -61,10 +65,6 @@
         element.style.display = "none";
         element.offsetTop;
         element.style.display = saved;
-    }
-
-    function modifyValueRename(text, property, value, to) {
-        return text.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), property + ": " + to);
     }
 
     function forEach(list, func) {
