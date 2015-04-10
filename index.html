@@ -30,7 +30,7 @@ uses the most recent syntax,
 but the browser you want to test may support only old syntaxes.
 <p>
 This bookmarklet dynamically modifies the DOM for your browser,
-so that you can test layout and/or behavior
+so that you can test the layout and/or the behavior
 before the browser adopts to the new syntax.
 <p>
 Supports <a href="http://dev.w3.org/csswg/css-writing-modes-3/">CSS Writing Modes Level 3</a>
@@ -39,7 +39,7 @@ for Chrome/Safari/IE.
 <h2>Install</h2>
 <ol>
   <li>Drag this bookmarklet to your bookmarks bar:
-    <a class=bookmarklet href='{% include_relative bookmarklets/tweak-css-tests.js %}'>tweak-css-tests</a>
+    <a class=bookmarklet href='{% include_relative bookmarklets/insert-tweak-css-tests.js %}'>tweak-css-tests</a>
 </ol>
 
 <p>
@@ -48,25 +48,27 @@ If that fails, please refer to
 
 <h2>How to use the bookmarklet</h2>
 <ol>
-  <li>Navigate to the test page in the <a href="http://test.csswg.org/shepherd/">CSS Test Suites</a>.
+  <li>Navigate to the test page in the <a href="http://test.csswg.org/harness/">CSS Test Harness</a>.
   <li>Click the bookmarklet on your bookmarks bar.
 </ol>
 
 <h2>Advanced Topics</h2>
 
-<h3>Online version of the bookmarklet</h3>
+<h3>Offline version of the bookmarklet</h3>
 <p>
-The online version of the bookmarklet loads the most recent version automatically.
-You don't need to update the bookmarklet when new versions are available.
-It requires an Internet connection to run though.
+The bookmarklet loads the most recent version automatically,
+but it requires an Internet connection to run.
+The offline version of the bookmarklet installs all the necessary logic locally.
+If you use the offline version,
+you will need to re-install the bookmarklet when you need new versions.
 <p>
-To install the online version:
+To install the offline version of the bookmarklet:
 <ol>
   <li>Drag this bookmarklet to your bookmarks bar:
-    <a class=bookmarklet href='{% include_relative bookmarklets/insert-tweak-css-tests.js %}'>tweak-css-tests</a>
+    <a class=bookmarklet href='{% include_relative bookmarklets/tweak-css-tests.js %}'>tweak-css-tests</a>
 </ol>
 
-<h3>Use the script in HTML files</h3>
+<h3>Using the script in HTML files</h3>
 <p>
 If you have the test files on your local hard drive,
 you can load the script into the test page
