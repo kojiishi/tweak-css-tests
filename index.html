@@ -58,9 +58,13 @@ If that fails, please refer to
 <p>
 The bookmarklet loads the most recent version automatically,
 but it requires an Internet connection to run.
-The offline version of the bookmarklet installs all the necessary logic locally.
-If you use the offline version,
-you will need to re-install the bookmarklet when you need new versions.
+The offline version of the bookmarklet installs all the necessary logic locally within your bookmark,
+so that it runs without a connection.
+<p>
+When you need newer versions,
+you will need to re-install the bookmarklet though.
+Please refer to the <a href="https://github.com/kojiishi/tweak-css-tests/commits/">commit history</a>
+to see if newer versions are available.
 <p>
 To install the offline version of the bookmarklet:
 <ol>
@@ -68,7 +72,7 @@ To install the offline version of the bookmarklet:
     <a class=bookmarklet href='{% include_relative bookmarklets/tweak-css-tests.js %}'>tweak-css-tests</a>
 </ol>
 
-<h3>Using the script in HTML files</h3>
+<h3>Using the script in your HTML files</h3>
 <p>
 If you have the test files on your local hard drive,
 you can load the script into the test page
