@@ -45,8 +45,8 @@
     }
 
     function modifyWebKit(text) {
-        text = renameValue(text, "text-combine-upright", "all", "horizontal");
-        text = renameProperty(text, "text-combine-upright", "-webkit-text-combine");
+        text = rename(text, "text-combine-(horizontal|upright)", "all", "-webkit-text-combine", "horizontal");
+        text = renameProperty(text, "text-combine-(horizontal|upright)", "-webkit-text-combine");
         text = renameValue(text, "text-orientation", "mixed", "vertical-right");
         text = prefixProperty(text, "text-orientation");
         text = prefixValues(text, "unicode-bidi", ["isolate", "isolate-override", "plaintext"]);
@@ -56,7 +56,7 @@
     }
 
     function modifyIE(text) {
-        text = renameProperty(text, "text-combine-upright", "-ms-text-combine-horizontal");
+        text = renameProperty(text, "text-combine-(horizontal|upright)", "-ms-text-combine-horizontal");
         text = renameValues(text, "writing-mode", [
             "horizontal-tb", "lr-tb",
             "vertical-rl", "tb-rl",
@@ -67,10 +67,6 @@
 
     function prefixProperty(text, property) {
         return renameProperty(text, property, "-webkit-" + property);
-    }
-
-    function renameProperty(text, property, to) {
-        return text.replace(new RegExp(property, "g"), to);
     }
 
     function prefixValues(text, property, values) {
@@ -84,6 +80,10 @@
         return renameValue(text, property, value, "-webkit-" + value);
     }
 
+    function renameProperty(text, property, to) {
+        return text.replace(new RegExp(property, "g"), to);
+    }
+
     function renameValues(text, property, values) {
         for (var i = 0; i < values.length; i += 2)
             text = renameValue(text, property, values[i], values[i+1]);
@@ -91,7 +91,11 @@
     }
 
     function renameValue(text, property, value, to) {
-        return text.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), property + ": " + to);
+        return rename(text, property, value, property, to);
+    }
+
+    function rename(text, property, value, propertyTo, valueTo) {
+        return text.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), propertyTo + ": " + valueTo);
     }
 
     function recalc(element) {
