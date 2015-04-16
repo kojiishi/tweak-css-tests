@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     insert = require('gulp-insert'),
-    rename = require('gulp-rename'),
     uglify = require('gulp-uglify');
 
 var source = ['tweak-css-tests.js', 'insert-tweak-css-tests.js'];
