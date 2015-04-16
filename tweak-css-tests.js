@@ -1,23 +1,23 @@
 (function () {
-    modifyStyles(document);
+    function Tweaker () {
+    }
+    var proto = Tweaker.prototype;
 
     function modifyStyles(doc) {
-        var modify = getModify();
-        if (!modify)
-            return;
-
         if (doc.readyState != "complete") {
             doc.addEventListener("load", function () { modifyStyles(doc); });
             return;
         }
 
+        var tweaker = new Tweaker();
         var isModified = false;
         forEach(doc.querySelectorAll("style"), function (style) {
             var original = style.innerText;
-            var modified = modify(original);
-            if (modified == original)
+            tweaker.text = original;
+            tweaker.tweak();
+            if (tweaker.text == original)
                 return;
-            style.innerHTML = modified;
+            style.innerHTML = tweaker.text;
             isModified = true;
         });
 
@@ -35,67 +35,59 @@
             recalc(doc.body);
     }
 
-    function getModify() {
-        var style = document.body.style;
-        if ('webkitWritingMode' in style)
-            return modifyWebKit;
-        if ('msTextCombineHorizontal' in style)
-            return modifyIE;
-        return null;
+    var style = document.body.style;
+    if ('webkitWritingMode' in style) {
+        proto.prefix = "-webkit-";
+        proto.tweak = function tweakWebKit() {
+            this.rename("text-combine-(horizontal|upright)", "all", "-webkit-text-combine", "horizontal");
+            this.renameProperty("text-combine-(horizontal|upright)", "-webkit-text-combine");
+            this.renameValue("text-orientation", "mixed", "vertical-right");
+            this.prefixProperty("text-orientation", "writing-mode");
+            this.prefixValue("unicode-bidi", "isolate", "isolate-override", "plaintext");
+            this.replace(/(-webkit-){2,}/g, "-webkit-");
+        };
+    } else if ('msTextCombineHorizontal' in style) {
+        proto.tweak = function tweakIE() {
+            this.renameProperty("text-combine-(horizontal|upright)", "-ms-text-combine-horizontal");
+            this.renameValue("writing-mode",
+                "horizontal-tb", "lr-tb",
+                "vertical-rl", "tb-rl",
+                "vertical-lr", "tb-lr");
+            this.replace(/(-ms-){2,}/g, "-ms-");
+        };
+    } else {
+        throw new Exception("Unsupported browser");
     }
 
-    function modifyWebKit(text) {
-        text = rename(text, "text-combine-(horizontal|upright)", "all", "-webkit-text-combine", "horizontal");
-        text = renameProperty(text, "text-combine-(horizontal|upright)", "-webkit-text-combine");
-        text = renameValue(text, "text-orientation", "mixed", "vertical-right");
-        text = prefixProperty(text, "text-orientation");
-        text = prefixValues(text, "unicode-bidi", ["isolate", "isolate-override", "plaintext"]);
-        text = prefixProperty(text, "writing-mode");
-        text = text.replace(/(-webkit-){2,}/g, "-webkit-");
-        return text;
+    proto.prefixProperty = function (property) {
+        for (var i = 0; i < arguments.length; i++) {
+            property = arguments[i];
+            this.renameProperty(property, this.prefix + property);
+        }
     }
 
-    function modifyIE(text) {
-        text = renameProperty(text, "text-combine-(horizontal|upright)", "-ms-text-combine-horizontal");
-        text = renameValues(text, "writing-mode", [
-            "horizontal-tb", "lr-tb",
-            "vertical-rl", "tb-rl",
-            "vertical-lr", "tb-lr"]);
-        text = text.replace(/(-ms-){2,}/g, "-ms-");
-        return text;
+    proto.prefixValue = function (property, value) {
+        for (var i = 1; i < arguments.length; i++) {
+            value = arguments[i];
+            this.renameValue(property, value, this.prefix + value);
+        }
     }
 
-    function prefixProperty(text, property) {
-        return renameProperty(text, property, "-webkit-" + property);
+    proto.renameProperty = function (property, to) {
+        this.rename(property, "", to, "");
     }
 
-    function prefixValues(text, property, values) {
-        forEach(values, function (value) {
-            text = prefixValue(text, property, value);
-        });
-        return text;
+    proto.renameValue = function (property, value, to) {
+        for (var i = 1; i < arguments.length; i += 2)
+            this.rename(property, arguments[i], property, arguments[i+1]);
     }
 
-    function prefixValue(text, property, value) {
-        return renameValue(text, property, value, "-webkit-" + value);
+    proto.rename = function (property, value, propertyTo, valueTo) {
+        this.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), propertyTo + ": " + valueTo);
     }
 
-    function renameProperty(text, property, to) {
-        return text.replace(new RegExp(property, "g"), to);
-    }
-
-    function renameValues(text, property, values) {
-        for (var i = 0; i < values.length; i += 2)
-            text = renameValue(text, property, values[i], values[i+1]);
-        return text;
-    }
-
-    function renameValue(text, property, value, to) {
-        return rename(text, property, value, property, to);
-    }
-
-    function rename(text, property, value, propertyTo, valueTo) {
-        return text.replace(new RegExp(property + "\\s*:\\s*" + value, "g"), propertyTo + ": " + valueTo);
+    proto.replace = function (from, to) {
+        this.text = this.text.replace(from, to);
     }
 
     function recalc(element) {
@@ -109,4 +101,6 @@
         for (var i = 0; i < list.length; i++)
             func(list[i]);
     }
+
+    modifyStyles(document);
 })();
