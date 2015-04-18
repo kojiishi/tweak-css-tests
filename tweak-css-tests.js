@@ -24,16 +24,15 @@
                 isModified = true;
             });
 
-            // WebKit/Blink has a bug in table layout when writing-mode was changed.
-            // Force a full layout to work around this issue.
             if (isModified)
-                recalc(doc.body);
+                me.onTweakDocumentCompleted(doc);
         },
         tweakStyleText: function (text) {
             this.text = text;
             this.tweakPlatform();
             return this.text != text;
         },
+        onTweakDocumentCompleted: function () {},
         prefixProperty: function (property) {
             for (var i = 0; i < arguments.length; i++) {
                 property = arguments[i];
@@ -72,6 +71,11 @@
                 this.prefixProperty("text-orientation", "writing-mode");
                 this.prefixValue("unicode-bidi", "isolate", "isolate-override", "plaintext");
                 this.replace(/(-webkit-){2,}/g, "-webkit-");
+            },
+            onTweakDocumentCompleted: function (doc) {
+                // WebKit/Blink has a bug in table layout when writing-mode was changed.
+                // Force a full layout to work around this issue.
+                recalc(doc.body);
             }
         });
     } else if ('msTextCombineHorizontal' in style) {
