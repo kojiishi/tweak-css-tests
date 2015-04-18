@@ -18,19 +18,19 @@
 
             var isModified = false;
             forEach(doc.querySelectorAll("style"), function (style) {
-                if (!me.tweakStyleText(style.innerText))
-                    return;
-                style.innerHTML = me.text;
-                isModified = true;
+                isModified |= me.tweakStyleElement(style);
             });
 
             if (isModified)
                 me.onTweakDocumentCompleted(doc);
         },
-        tweakStyleText: function (text) {
-            this.text = text;
+        tweakStyleElement: function (style) {
+            var old = this.text = style.innerText;
             this.tweakPlatform();
-            return this.text != text;
+            if (this.text == old)
+                return false;
+            style.innerHTML = this.text;
+            return true;
         },
         onTweakDocumentCompleted: function () {},
         prefixProperty: function (property) {
