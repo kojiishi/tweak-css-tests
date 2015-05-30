@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <style>
 html {
-  font: 16pt/1.5 Palatino;
+  font: 16pt/1.5 Palatino, 'Palatino Linotype';
 }
 a.bookmarklet {
   background:#3498db;
@@ -15,7 +15,14 @@ a.bookmarklet {
   text-decoration:none;
   white-space:nowrap;
 }
+@media all and (min-width:1000px) {
+  body {
+    column-count:2;
+    -webkit-column-count:2;
+  }
+}
 </style>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <h1>Tweak CSS Tests</h1>
 <p>
 A bookmarklet that helps you running the
