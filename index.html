@@ -5,6 +5,17 @@
 html {
   font: 16pt/1.5 Palatino, 'Palatino Linotype';
 }
+@media all and (min-width:1000px) {
+  body {
+    column-count:2;
+    -webkit-column-count:2;
+  }
+}
+li {
+  break-inside:avoid-column;
+  -webkit-column-break-inside:avoid; /* Chrome, Safari */
+  page-break-inside:avoid; /* FF 20+ */
+}
 a.bookmarklet {
   background:#3498db;
   border:gray solid;
@@ -15,11 +26,10 @@ a.bookmarklet {
   text-decoration:none;
   white-space:nowrap;
 }
-@media all and (min-width:1000px) {
-  body {
-    column-count:2;
-    -webkit-column-count:2;
-  }
+div.note {
+  background-color:#ddd;
+  border:thin black solid;
+  padding:0em 1em;
 }
 </style>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -59,6 +69,7 @@ If that fails, please refer to
   <li>Click the bookmarklet on your bookmarks bar.
 </ol>
 
+<div class=note>
 <h2>Advanced Topics</h2>
 
 <h3>Offline version of the bookmarklet</h3>
@@ -92,3 +103,4 @@ by adding a script tag to the test page.
 <p>
 The script is available <a href="tweak-css-tests.js">here</a>,
 or on <a href="https://github.com/kojiishi/tweak-css-tests">github</a>.
+</div>
