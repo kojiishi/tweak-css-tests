@@ -78,6 +78,14 @@
                 recalc(doc.body);
             }
         });
+    } else if (window.CSS && CSS.supports && CSS.supports("unicode-bidi", "-moz-isolate")) {
+        extend(Tweaker.prototype, {
+            prefix: "-moz-",
+            tweakPlatform: function tweakMozilla() {
+                this.prefixValue("unicode-bidi", "isolate", "isolate-override", "plaintext");
+                this.replace(/(-moz-){2,}/g, "-moz-");
+            }
+        });
     } else if ('msTextCombineHorizontal' in style) {
         extend(Tweaker.prototype, {
             prefix: "-ms-",
